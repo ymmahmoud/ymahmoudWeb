@@ -1,0 +1,90 @@
+.navbar-custom {
+  background-color: #2e2b31;
+}
+/* change the brand and text color */
+.navbar-custom,
+.navbar-custom .navbar-text {
+  color: rgba(255,255,255,.8);
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+  color: rgba(255,255,255,.5);
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link,
+.navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-text{
+  font-size: 100px;
+}
+
+body{
+  margin-bottom: 100px;
+}
+
+.main-title{
+  height: 80vh;
+  background:transparent;
+}
+
+.card-columns {
+@include media-breakpoint-only(lg) {
+  column-count: 4;
+}
+@include media-breakpoint-only(xl) {
+  column-count: 2;
+}
+}
+
+.container{
+margin-left: auto;
+margin-right: auto; 
+margin-top: 2%;
+}
+
+#Signup{
+  margin-left: auto;
+  margin-right: auto; 
+}
+h1.title{
+padding-top: 20px;
+}
+
+form{
+padding: 30px;
+}
+
+.form-group{
+padding: 5px;
+}
+
+.rpiSign{
+  margin: 0 auto;
+  max-width: 256px;
+}
+
+.rpiImg{
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+
+#jumb{
+  height: 89vh;
+}
+
+footer{
+  clear: both;
+  position: fixed;
+  background: #54585a;
+  height: 46px;
+  overflow: hidden;
+  display: block;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  width: 100%; /* add this rule */
+}

@@ -1,0 +1,19 @@
+{
+  "db_servername" : "localhost",
+  "db_username" : "root",
+  "db_password" : "",
+  "db_tablename" : "websys_final",
+  "ranks": {
+    "user": {
+      "vender": {
+        "admin": null
+      }
+    }
+  },
+  "user_parameters" : {
+    "username": "text",
+    "firstname": "text",
+    "lastname": "text"
+  },
+  "required" : ["username","firstname","lastname"]
+}

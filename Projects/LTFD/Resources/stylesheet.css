@@ -1,0 +1,117 @@
+/*********************/
+/*    01. Navbar     */
+/*********************/
+.navbar-custom {
+  background-color: #d6001c;
+}
+
+/* change the brand and text color */
+.navbar-custom,
+.navbar-custom .navbar-text {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link,
+.navbar-brand {
+  color: rgba(255,255,255, 0.7);
+}
+
+/*********************/
+/*    02. Header     */
+/*********************/
+.title{
+  padding: 6%;
+  color: #ffffff;
+}
+
+.header {
+  background-size: cover;
+  height: 100vh;
+}
+
+#header-vid{
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.fullscreen-bg {
+  filter: brightness(20%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header .header-content {
+  text-align: center;
+}
+
+.header .text-container {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.Logo {
+  padding-top: 5%;
+  height: 10%;
+  padding-bottom: 5%;
+}
+
+.header .p-large {
+  margin-bottom: 2rem;
+}
+
+.header .btn-solid-lg {
+  margin-right: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.table {
+  margin: auto;
+  width: 100% !important;
+}
+
+table th {
+  text-align: center;
+}
+
+/*********************/
+/*     03. Body      */
+/*********************/
+
+.container-fluid{
+  background-color: #ffffff;
+  color: black;
+}
+.container-fluid h1{
+  padding: 5%;
+}
+
+/*********************/
+/*    05. Footer     */
+/*********************/
+
+.footer{
+  padding-top: 10%;
+  color: #000;
+  background-color: #fff;
+}
