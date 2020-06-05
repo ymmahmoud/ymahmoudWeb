@@ -67,7 +67,7 @@
     <p class="description text-justify">My fire department&#39;s old website has served us well, but it just doesn&#39;t cut it anymore. This new website tracks membership, rig checks, certifications, gear, and looks good to boot.</p>
     <div role="group" class="btn-group"></div><button class="btn btn-primary" onclick="window.location.href = 'http://ymahmoud.com/Projects/LTFD';" type="button">Check it out</button></div><div class="col-sm-12 col-lg-6 item"><i class="fa fa-check-square-o icon"></i>
     <h3 class="name">Anissa For PU</h3>
-    <p class="description text-justify">As a student of Rensselaer Polytechnic Institute, I&#39;ve always been very involved in student government.  When election season came around, I knew who I was voting for.</p><button class="btn btn-primary" type="button" onclick="window.location.href = 'http://ymahmoud.com/Projects/Anissa';">Check it out</button></div></div>
+    <p class="description text-justify">As a student of Rensselaer Polytechnic Institute, I&#39;ve always been very involved in student government.  When election season came around, I knew who I was voting for.</p><button class="btn btn-primary" type="button" onclick="window.location.href = 'http://ymahmoud.com/Projects/Anissa/index';">Check it out</button></div></div>
         </div> 
     </div>
     <div class="footer-dark">
