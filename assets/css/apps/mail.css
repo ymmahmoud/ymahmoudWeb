@@ -1,0 +1,48 @@
+.mail { grid-template-columns: 170px 230px 1fr; }
+
+.mail-list { margin: 0; padding: 0; list-style: none; overflow: auto; border-right: .5px solid var(--hairline); }
+.mail-list button {
+  display: grid;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-bottom: .5px solid var(--hairline);
+  background: none;
+  text-align: left;
+  cursor: default;
+}
+.mail-list span { font-size: var(--text-sm); }
+.mail-list small { font-size: var(--text-xs); color: var(--text-muted); }
+.mail-list button[aria-current="true"] { background: var(--accent); color: var(--text-on-accent); }
+.mail-list button[aria-current="true"] small { color: inherit; opacity: .8; }
+.mail-empty { padding: 40px 12px; text-align: center; color: var(--text-muted); }
+
+.mail-reader { padding: 6px 18px 20px; overflow: auto; }
+.message header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: .5px solid var(--hairline); }
+.message-from { margin: 0; font-weight: 700; }
+.message-meta { margin: 0; font-size: var(--text-xs); color: var(--text-muted); }
+.message h3 { margin: 8px 0 0; font-size: var(--text-lg); }
+.message p { white-space: pre-wrap; }
+
+.compose { display: flex; flex-direction: column; height: 100%; min-height: 360px; }
+.compose-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px;
+  padding: 8px 0;
+  border-bottom: .5px solid var(--hairline);
+}
+.compose-label { flex: none; width: 64px; color: var(--text-muted); text-align: right; }
+.compose-row input { flex: 1; min-width: 0; padding: 0; border: 0; background: none; }
+.compose-row input:focus-visible { box-shadow: none; }
+.recipient { padding: 1px 10px; border-radius: var(--radius-capsule); background: color-mix(in srgb, var(--accent), transparent 82%); color: var(--accent); }
+.compose-body { flex: 1; min-height: 180px; margin: 0; padding: 14px 16px; border: 0; background: none; resize: none; font: inherit; line-height: 1.55; }
+.compose-body:focus-visible { box-shadow: none; }
+.compose-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.compose-status { margin: 0 16px 12px; color: var(--text-muted); }
+
+@media (max-width: 700px) {
+  .mail { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; }
+  .mail-list { border-right: 0; border-bottom: .5px solid var(--hairline); max-height: 160px; }
+}

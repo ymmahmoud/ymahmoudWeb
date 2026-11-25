@@ -1,0 +1,11 @@
+.photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; padding: 4px 14px 14px; }
+.photos figure { margin: 0; }
+.photos figure.zoom { grid-column: 1 / -1; }
+
+.photo { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--radius-card); overflow: hidden; background: none; cursor: zoom-in; }
+.photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform var(--dur) var(--ease-out); }
+.photo:hover img { transform: scale(1.04); }
+.zoom .photo { cursor: zoom-out; }
+.zoom .photo img { aspect-ratio: auto; }
+
+.photos figcaption { margin-top: 6px; font-size: var(--text-sm); color: var(--text-muted); }

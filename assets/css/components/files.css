@@ -1,0 +1,38 @@
+.file-icon {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 44px;
+  height: 54px;
+  border-radius: 3px;
+  background: linear-gradient(225deg, var(--file-fold) 0 9px, var(--file-page) 9px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+.file-icon::after {
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  transform: translateX(-50%);
+  color: #fff;
+  font: 700 8px / 1.3 var(--font-ui);
+}
+.file-icon--pdf::after { content: "PDF"; background: var(--file-badge-pdf); }
+.file-icon--note { background: linear-gradient(var(--file-badge-note) 0 22%, var(--file-page) 22%); }
+.file-icon--folder {
+  width: 54px;
+  height: 42px;
+  border-radius: 4px;
+  background: var(--file-folder);
+  box-shadow: none;
+}
+
+.file-thumb {
+  width: 56px;
+  height: 42px;
+  object-fit: cover;
+  border: 2px solid var(--file-page);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}

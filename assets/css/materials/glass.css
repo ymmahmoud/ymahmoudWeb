@@ -1,0 +1,40 @@
+.glass {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, var(--glass-sheen), transparent var(--glass-sheen-stop)),
+    var(--glass-fill);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) brightness(var(--glass-brightness));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) brightness(var(--glass-brightness));
+  box-shadow: var(--glass-shadow), var(--glass-glow);
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: var(--glass-rim-width);
+  background: linear-gradient(var(--glass-rim-angle), var(--glass-rim-hi), var(--glass-rim-lo) 35%, var(--glass-rim-lo) 65%, var(--glass-rim-hi));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glass--strong {
+  --glass-fill: var(--glass-fill-strong);
+  --glass-blur: var(--glass-blur-strong);
+}
+
+.glass--window {
+  --glass-fill: var(--window-fill);
+  --glass-blur: var(--window-blur);
+  --glass-shadow: var(--window-shadow);
+}
+
+.glass--inset {
+  --glass-fill: var(--glass-fill-inset);
+  --glass-shadow: none;
+}

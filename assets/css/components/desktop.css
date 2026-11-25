@@ -1,0 +1,42 @@
+.desktop {
+  position: fixed;
+  inset: var(--menubar-h) 0 0;
+}
+
+.desk-icons {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.desk-icons[hidden] { display: none; }
+
+.desk-icon {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 92px;
+  padding: 6px 4px;
+  border: 0;
+  border-radius: var(--radius-item);
+  background: none;
+  color: var(--desk-label);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-shadow: var(--desk-label-shadow);
+  cursor: default;
+}
+.desk-icon:focus-visible { box-shadow: none; }
+.desk-icon:focus .file-icon, .desk-icon:focus .file-thumb { outline: 4px solid var(--desk-select); outline-offset: 2px; }
+.desk-icon:focus .desk-label { padding: 0 6px; border-radius: var(--radius-capsule); background: var(--accent); text-shadow: none; }
+
+@media (max-width: 700px) {
+  .desk-icons { display: none; }
+}
+
+html:not(.js) .desktop { position: static; padding: calc(var(--menubar-h) + 16px) 12px 24px; }
+html:not(.js) .desk-icons { display: none; }

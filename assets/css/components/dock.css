@@ -1,0 +1,96 @@
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: var(--dock-bottom);
+  z-index: 9999;
+  max-width: calc(100vw - 16px);
+  transform: translateX(-50%);
+}
+
+.dock-shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--dock-gap);
+  margin: 0;
+  padding: var(--dock-pad);
+  list-style: none;
+  border-radius: var(--radius-dock);
+}
+
+.dock-item {
+  --size: calc(var(--dock-tile) * var(--scale, 1));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: var(--dock-tile);
+}
+
+.dock-tile {
+  flex: none;
+  width: var(--size);
+  height: var(--size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-tile);
+  background: var(--tile);
+  corner-shape: squircle;
+  box-shadow: var(--icon-highlight), var(--icon-shadow);
+  transition: width var(--dur-fast) var(--ease-out), height var(--dur-fast) var(--ease-out);
+  cursor: default;
+}
+.dock-tile:active { filter: brightness(.8); }
+.dock-tile--trash { --tile: var(--icon-trash-full); box-shadow: none; }
+.dock.trash-empty .dock-tile--trash { --tile: var(--icon-trash-empty); }
+
+.dock-tile.is-bouncing { animation: dock-bounce var(--dur-bounce) linear; }
+
+@keyframes dock-bounce {
+  0% { transform: translateY(0); animation-timing-function: cubic-bezier(.3, .6, .4, 1); }
+  25% { transform: translateY(-55%); animation-timing-function: cubic-bezier(.6, 0, .7, .4); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(.3, .6, .4, 1); }
+  70% { transform: translateY(-22%); animation-timing-function: cubic-bezier(.6, 0, .7, .4); }
+  100% { transform: translateY(0); }
+}
+
+.dock-sep { align-self: stretch; width: 1px; margin: 4px; background: var(--glass-rim-lo); }
+
+.dock-tip {
+  position: absolute;
+  bottom: calc(var(--size) + var(--dock-tile) * .3);
+  padding: 3px 12px;
+  border-radius: var(--radius-capsule);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast);
+}
+.dock-item:hover .dock-tip, .dock-item:has(:focus-visible) .dock-tip { opacity: 1; }
+
+.dock-item.running::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--dock-pad) * -0.6);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dock-indicator);
+  opacity: .75;
+}
+
+@supports (corner-shape: squircle) {
+  .dock-tile { border-radius: var(--radius-tile-squircle); }
+}
+
+@media (max-width: 700px) {
+  .dock { left: 12px; right: 12px; transform: none; transition: opacity var(--dur), translate var(--dur) var(--ease-out); }
+  .dock-shelf { justify-content: space-around; }
+  .dock-item:not(.dock-item--phone), .dock-sep, .dock-tip, .dock-item.running::after { display: none; }
+  .dock-tile:active { filter: brightness(.75); }
+
+  body:has(.window.open) .dock { opacity: 0; translate: 0 100%; pointer-events: none; }
+}
+
+html:not(.js) .dock { display: none; }

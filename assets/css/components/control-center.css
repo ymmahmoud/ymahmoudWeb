@@ -1,0 +1,58 @@
+.control-center {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.control-center[hidden] { display: none; }
+
+.cc-tile {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius-panel);
+}
+.cc-tile--tall { grid-row: span 2; align-content: space-evenly; }
+.cc-tile--wide { grid-column: 1 / -1; }
+.cc-tile--row { grid-auto-flow: column; grid-auto-columns: 1fr; }
+.cc-label { font-size: var(--text-sm); font-weight: 600; }
+
+.cc-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.cc-toggle b, .cc-toggle small { display: block; }
+.cc-toggle b { font-size: var(--text-sm); }
+.cc-toggle small { font-size: var(--text-xs); color: var(--text-muted); }
+
+.cc-bubble {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--fill-hover);
+  transition: background var(--dur-fast);
+}
+.cc-bubble svg { width: 18px; height: 18px; fill: currentColor; }
+.cc-toggle[aria-pressed="true"] .cc-bubble { background: var(--accent); color: var(--text-on-accent); }
+
+.cc-button {
+  padding: 8px;
+  border: 0;
+  border-radius: var(--radius-item);
+  background: var(--fill-quiet);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.cc-button:hover { background: var(--fill-hover); }
+.cc-button[aria-pressed="true"] { background: var(--accent); color: var(--text-on-accent); }
+.cc-button:disabled { opacity: .4; cursor: default; }

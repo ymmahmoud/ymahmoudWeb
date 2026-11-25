@@ -1,0 +1,6 @@
+.sysinfo { text-align: center; }
+.sysinfo .avatar { width: 96px; height: 96px; }
+.sysinfo h3 { margin: 10px 0 2px; font: 700 var(--text-xl) var(--font-display); }
+.sysinfo dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 18px 0; text-align: left; font-size: var(--text-sm); }
+.sysinfo dt { font-weight: 600; text-align: right; }
+.sysinfo dd { margin: 0; color: var(--text-muted); }

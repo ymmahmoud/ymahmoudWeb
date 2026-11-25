@@ -1,0 +1,32 @@
+@layer theme, base, materials, components, apps;
+
+@import url("theme/macos-27.css") layer(theme);
+
+@import url("base.css") layer(base);
+
+@import url("materials/glass.css") layer(materials);
+
+@import url("components/controls.css") layer(components);
+@import url("components/menubar.css") layer(components);
+@import url("components/menus.css") layer(components);
+@import url("components/control-center.css") layer(components);
+@import url("components/widgets.css") layer(components);
+@import url("components/notifications.css") layer(components);
+@import url("components/alert.css") layer(components);
+@import url("components/desktop.css") layer(components);
+@import url("components/files.css") layer(components);
+@import url("components/window.css") layer(components);
+@import url("components/split.css") layer(components);
+@import url("components/dock.css") layer(components);
+@import url("components/home.css") layer(components);
+
+@import url("apps/finder.css") layer(apps);
+@import url("apps/notes.css") layer(apps);
+@import url("apps/mail.css") layer(apps);
+@import url("apps/phone.css") layer(apps);
+@import url("apps/preview.css") layer(apps);
+@import url("apps/photos.css") layer(apps);
+@import url("apps/safari.css") layer(apps);
+@import url("apps/terminal.css") layer(apps);
+@import url("apps/help.css") layer(apps);
+@import url("apps/sysinfo.css") layer(apps);

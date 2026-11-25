@@ -1,0 +1,46 @@
+.notifications {
+  position: fixed;
+  top: calc(var(--menubar-h) + 8px);
+  right: 10px;
+  z-index: 9998;
+  display: grid;
+  gap: 8px;
+  width: min(340px, calc(100vw - 20px));
+  pointer-events: none;
+}
+
+.notice {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-panel);
+  pointer-events: auto;
+  animation: notice-in var(--dur) var(--ease-spring);
+}
+.notice b { font-size: var(--text-md); }
+.notice p { grid-column: 1; margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
+.notice-close {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: start;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fill-hover);
+  font-size: var(--text-sm);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.notice.is-leaving { animation: notice-out var(--dur) var(--ease-in) forwards; }
+
+@keyframes notice-in {
+  from { opacity: 0; transform: translateX(24px) scale(.96); }
+}
+
+@keyframes notice-out {
+  to { opacity: 0; transform: translateX(110%); }
+}

@@ -1,0 +1,71 @@
+.home-screen, .home-indicator { display: none; }
+
+@media (max-width: 700px) {
+  .home-screen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px 0;
+    margin: 0;
+    padding: 18px 16px;
+    list-style: none;
+  }
+  .home-screen li { display: grid; justify-items: center; }
+
+  .home-app {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--desk-label);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-shadow: var(--desk-label-shadow);
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+  .home-app:focus-visible { box-shadow: none; }
+  .home-app:focus-visible .app-icon { box-shadow: var(--focus-ring); }
+  .home-app:active .app-icon { filter: brightness(.75); }
+
+  .app-icon {
+    width: var(--home-icon);
+    height: var(--home-icon);
+    border-radius: var(--radius-tile);
+    corner-shape: squircle;
+    background: var(--tile);
+    box-shadow: var(--icon-highlight), var(--icon-shadow);
+  }
+
+  .home-indicator {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    z-index: 10000;
+    width: calc(var(--home-indicator-w) + 40px);
+    height: var(--home-indicator-room);
+    padding: 0;
+    border: 0;
+    background: none;
+    translate: -50% 0;
+    touch-action: none;
+  }
+  .home-indicator::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 8px;
+    height: var(--home-indicator-h);
+    border-radius: var(--radius-capsule);
+    background: var(--text);
+  }
+  body:has(.window.open) .home-indicator { display: block; }
+
+  .dock-item--phone .dock-tile, .home-app { -webkit-touch-callout: none; user-select: none; }
+}
+
+@supports (corner-shape: squircle) {
+  .app-icon { border-radius: var(--radius-tile-squircle); }
+}

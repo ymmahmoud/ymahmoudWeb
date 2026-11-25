@@ -1,0 +1,26 @@
+.term {
+  min-height: 320px;
+  height: 100%;
+  padding: 10px 14px;
+  background: var(--term-bg);
+  color: var(--term-text);
+  font: 13px / 1.5 var(--font-mono);
+  cursor: text;
+}
+.term-out div { white-space: pre-wrap; word-break: break-word; }
+.term-out .cmd { color: var(--term-prompt); }
+.term-out b { color: var(--term-highlight); }
+
+.term-line { display: flex; gap: 8px; }
+.term-line label { color: var(--term-prompt); white-space: nowrap; }
+.term-line input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  caret-color: var(--term-prompt);
+}
+.term-line input:focus-visible { box-shadow: none; }

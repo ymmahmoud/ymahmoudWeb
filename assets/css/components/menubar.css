@@ -1,0 +1,62 @@
+.menubar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10000;
+  height: var(--menubar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--menubar-pad);
+  background: var(--menubar-fill);
+  color: var(--menubar-text);
+  font-size: var(--menubar-font);
+  text-shadow: var(--menubar-text-shadow);
+  transition: color var(--dur);
+}
+
+.menubar-group { display: flex; align-items: center; gap: var(--menubar-gap); min-width: 0; }
+
+.mb-menu { position: relative; }
+
+.mb-item {
+  display: flex;
+  align-items: center;
+  height: calc(var(--menubar-h) - 6px);
+  padding: var(--menubar-item-pad);
+  border: 0;
+  border-radius: var(--radius-capsule);
+  background: none;
+  font-weight: var(--weight-menu);
+  white-space: nowrap;
+  cursor: default;
+  transition: background var(--dur-fast);
+}
+.mb-item[aria-expanded="true"], .mb-item:focus-visible { background: var(--menubar-item-active); }
+
+.mb-logo { font-weight: 800; font-size: var(--text-lg); color: inherit; }
+.mb-app { font-weight: 700; }
+.mb-clock { font-variant-numeric: tabular-nums; }
+
+.mb-glyph { width: var(--menubar-glyph); height: var(--menubar-glyph); fill: currentColor; filter: drop-shadow(var(--menubar-text-shadow)); }
+.mb-glyph--battery { width: calc(var(--menubar-glyph) * 1.6); }
+
+.mb-desktop-glyph { display: contents; }
+.mb-phone-glyphs { display: none; }
+
+.wifi-slash { display: none; }
+.wifi-off .mb-glyph path:first-child { opacity: .35; }
+.wifi-off .wifi-slash { display: inline; }
+
+@media (max-width: 700px) {
+  .mb-menu--desktop, .menubar-group:first-child, .clock-date, .mb-desktop-glyph { display: none; }
+  .mb-phone-glyphs { display: flex; align-items: center; gap: 6px; }
+
+  .menubar { text-shadow: none; }
+  .menubar-group--status { flex: 1; justify-content: space-between; }
+  .menubar-group--status > .mb-menu:last-child { order: -1; }
+  .mb-item { padding: 0 4px; font-weight: 600; }
+  .mb-item[aria-expanded="true"], .mb-item:focus-visible { background: none; }
+  .mb-glyph { filter: none; }
+
+  body:has(.window.open) .menubar { color: var(--text); }
+}
