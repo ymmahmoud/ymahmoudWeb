@@ -1,4 +1,4 @@
 <?php
 
-$safariSite = 'tv';
+$tvSite = 'tv';
 require __DIR__ . '/index.php';

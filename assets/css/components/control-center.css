@@ -14,7 +14,6 @@
 }
 .cc-tile--tall { grid-row: span 2; align-content: space-evenly; }
 .cc-tile--wide { grid-column: 1 / -1; }
-.cc-tile--row { grid-auto-flow: column; grid-auto-columns: 1fr; }
 .cc-label { font-size: var(--text-sm); font-weight: 600; }
 
 .cc-toggle {
@@ -43,16 +42,3 @@
 }
 .cc-bubble svg { width: 18px; height: 18px; fill: currentColor; }
 .cc-toggle[aria-pressed="true"] .cc-bubble { background: var(--accent); color: var(--text-on-accent); }
-
-.cc-button {
-  padding: 8px;
-  border: 0;
-  border-radius: var(--radius-item);
-  background: var(--fill-quiet);
-  font-size: var(--text-sm);
-  cursor: pointer;
-  transition: background var(--dur-fast);
-}
-.cc-button:hover { background: var(--fill-hover); }
-.cc-button[aria-pressed="true"] { background: var(--accent); color: var(--text-on-accent); }
-.cc-button:disabled { opacity: .4; cursor: default; }

@@ -26,6 +26,8 @@
   color: #fff;
   font: 600 32px var(--font-display);
 }
+.avatar svg { width: 55%; height: 55%; fill: currentColor; }
+.avatar--sm { flex: none; width: 36px; height: 36px; margin: 0; font-size: 14px; }
 .avatar--brand { background: linear-gradient(160deg, var(--brand), color-mix(in srgb, var(--brand), #000 35%)); }
 
 .btn--glass {

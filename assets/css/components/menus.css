@@ -68,6 +68,13 @@
   font-weight: 700;
 }
 
+.menu .is-minimized::before {
+  content: "◆";
+  position: absolute;
+  left: var(--menu-check-inset);
+  font-size: 8px;
+}
+
 .menu-switch { padding-left: 12px !important; font-weight: 600; }
 
 .menu hr {
@@ -108,7 +115,6 @@
   }
   .panel--end .cc-toggle small, .panel--end .widget-kicker { color: inherit; opacity: .7; }
   .panel--end .segmented button[aria-pressed="true"] { color: var(--paper-ink); }
-  .panel--end [data-action="toggle-icons"] { display: none; }
 
   @keyframes overlay-in {
     from { opacity: 0; transform: scale(1.06); }

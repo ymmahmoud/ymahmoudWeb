@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="robots" content="noindex">
     <title>Privacy Policy - Mahmoud</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
@@ -53,6 +54,9 @@
 
             <h4>Retention and deletion</h4>
             <p>Your account and watch history are kept while you have access. Security logs are deleted automatically after 30 days. To have your account and data removed, use the <a href="/#compose">contact form</a>. You can also remove this app's access to your Google account at any time from your <a href="https://myaccount.google.com/permissions">Google account permissions</a>.</p>
+
+            <h4>Donations</h4>
+            <p>The only recurring costs of running the server are hard drives and SSDs. Donations are optional and go through <a href="https://venmo.com/u/Yaseen-Mahmoud">Venmo (@Yaseen-Mahmoud)</a>; this site never sees your payment details. See the <a href="/donate">Donate page</a>.</p>
 
             <h4>Contact</h4>
             <p>Questions about this policy can be sent through the <a href="/#compose">contact form</a>.</p>

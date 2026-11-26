@@ -6,7 +6,7 @@ body {
   margin: 0;
   color: var(--text);
   font: var(--text-md) / 1.5 var(--font-ui);
-  background: var(--wallpaper-fallback) url("../img/header-bg.jpg") center / cover fixed;
+  background: var(--wallpaper-fallback) var(--wallpaper-image, url("../img/header-bg.jpg")) center / cover fixed;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
 }

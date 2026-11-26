@@ -14,7 +14,8 @@
   margin: 0;
   padding: var(--dock-pad);
   list-style: none;
-  border-radius: var(--radius-dock);
+  /* Concentric with the tiles: their corner radius plus the padding around them. */
+  border-radius: calc(var(--dock-tile) * .225 + var(--dock-pad));
 }
 
 .dock-item {
@@ -54,6 +55,54 @@
   100% { transform: translateY(0); }
 }
 
+.app-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  z-index: 1;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-capsule);
+  background: var(--badge);
+  color: #fff;
+  font: 600 var(--text-xs) / 20px var(--font-ui);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  pointer-events: none;
+}
+/* In the Dock the badge sits on the tile's corner and grows with magnification. */
+.dock-item > .app-badge {
+  top: auto;
+  bottom: calc(var(--size) - 16px);
+  scale: var(--scale, 1);
+  transition: bottom var(--dur-fast) var(--ease-out), scale var(--dur-fast) var(--ease-out);
+}
+.home-app { position: relative; }
+.home-app .app-badge { top: -6px; right: -6px; }
+
+/* A minimized window: a page with its app's icon in the corner. */
+.dock-tile--window {
+  position: relative;
+  border-radius: 6px;
+  background:
+    linear-gradient(var(--fill-hover) 0 18%, transparent 18%),
+    var(--window-fill);
+  box-shadow: 0 2px 6px var(--shadow-color), 0 0 0 .5px var(--hairline);
+}
+.dock-window-app {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 45%;
+  height: 45%;
+  border-radius: var(--radius-tile);
+  background: var(--tile);
+  box-shadow: var(--icon-shadow);
+}
+.dock-item--window.is-pending, .dock-item--window.is-leaving { opacity: 0; }
+
 .dock-sep { align-self: stretch; width: 1px; margin: 4px; background: var(--glass-rim-lo); }
 
 .dock-tip {
@@ -82,6 +131,7 @@
 
 @supports (corner-shape: squircle) {
   .dock-tile { border-radius: var(--radius-tile-squircle); }
+  .dock-shelf { border-radius: calc(var(--dock-tile) * .32 + var(--dock-pad)); corner-shape: squircle; }
 }
 
 @media (max-width: 700px) {

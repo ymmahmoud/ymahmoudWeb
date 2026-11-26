@@ -14,6 +14,23 @@
   transition: color var(--dur);
 }
 
+body.has-fullscreen .menubar {
+  z-index: 10001;
+  opacity: 0;
+  color: var(--text);
+  text-shadow: none;
+  transition: opacity var(--dur-fast);
+}
+body.has-fullscreen .menubar:hover,
+body.has-fullscreen .menubar:focus-within,
+body.has-fullscreen .menubar:has([aria-expanded="true"]) {
+  opacity: 1;
+  background: var(--glass-fill-strong);
+  backdrop-filter: blur(var(--glass-blur-strong));
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+}
+body.has-fullscreen .mb-glyph { filter: none; }
+
 .menubar-group { display: flex; align-items: center; gap: var(--menubar-gap); min-width: 0; }
 
 .mb-menu { position: relative; }

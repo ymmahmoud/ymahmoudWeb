@@ -26,7 +26,8 @@
 @import url("apps/phone.css") layer(apps);
 @import url("apps/preview.css") layer(apps);
 @import url("apps/photos.css") layer(apps);
-@import url("apps/safari.css") layer(apps);
+@import url("apps/tv.css") layer(apps);
+@import url("apps/settings.css") layer(apps);
 @import url("apps/terminal.css") layer(apps);
 @import url("apps/help.css") layer(apps);
 @import url("apps/sysinfo.css") layer(apps);

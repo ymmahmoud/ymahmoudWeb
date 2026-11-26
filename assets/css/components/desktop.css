@@ -14,6 +14,10 @@
   list-style: none;
 }
 .desk-icons[hidden] { display: none; }
+/* Once an icon has been dragged, every icon is placed by Finder (finder.js). */
+.desk-icons.is-free { inset: 0; pointer-events: none; }
+.desk-icons.is-free > li { position: absolute; pointer-events: auto; }
+.desk-icons > li.is-dragging { z-index: 1; opacity: .8; }
 
 .desk-icon {
   display: grid;
@@ -29,7 +33,11 @@
   font-weight: 500;
   text-shadow: var(--desk-label-shadow);
   cursor: default;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
 }
+.desk-icon img { -webkit-user-drag: none; }
 .desk-icon:focus-visible { box-shadow: none; }
 .desk-icon:focus .file-icon, .desk-icon:focus .file-thumb { outline: 4px solid var(--desk-select); outline-offset: 2px; }
 .desk-icon:focus .desk-label { padding: 0 6px; border-radius: var(--radius-capsule); background: var(--accent); text-shadow: none; }

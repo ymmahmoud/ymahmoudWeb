@@ -19,6 +19,8 @@
   --accent: light-dark(#0a7aff, #0a84ff);
   --brand: light-dark(#d7261e, #ff5a4f);
   --success: #34c759;
+  --badge: #ff3b30;
+  --unread: var(--accent);
   --hairline: light-dark(rgba(0, 0, 0, .1), rgba(255, 255, 255, .12));
   --fill-quiet: light-dark(rgba(0, 0, 0, .045), rgba(255, 255, 255, .07));
   --fill-hover: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .12));
@@ -51,7 +53,6 @@
   --radius-card: 16px;
   --radius-item: 9px;
   --radius-capsule: 999px;
-  --radius-dock: 32px;
   --radius-tile: 22.5%;
   --radius-tile-squircle: 32%;
 
@@ -122,6 +123,12 @@
   --icon-terminal:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='m5 8 4 4-4 4M11.5 17h7' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 58% no-repeat,
     linear-gradient(160deg, #3b3b3f, #0f0f10);
+  --icon-tv:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text x='12' y='15.6' text-anchor='middle' font-family='-apple-system, Helvetica, Arial, sans-serif' font-size='11' font-weight='700' letter-spacing='-.4' fill='white'>tv</text></svg>") center / 100% no-repeat,
+    linear-gradient(160deg, #2c2c30, #050506);
+  --icon-settings:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='7.6' fill='none' stroke='%23f2f2f5' stroke-width='2.6' stroke-dasharray='2.1 1.88'/><circle cx='12' cy='12' r='6.4' fill='%23f2f2f5'/><circle cx='12' cy='12' r='3.6' fill='none' stroke='%23636366' stroke-width='1.6'/><circle cx='12' cy='12' r='1.4' fill='%23636366'/></svg>") center / 78% no-repeat,
+    linear-gradient(160deg, #a1a1a8, #4a4a50);
   --icon-trash-empty:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5.5 7h13l-1.3 13.2a1.5 1.5 0 0 1-1.5 1.3H8.3a1.5 1.5 0 0 1-1.5-1.3z' fill='%23ffffffd9' stroke='%2398a2b3' stroke-width='.7'/><path d='M9.5 10v8.5M12 10v8.5M14.5 10v8.5' stroke='%23aab2c0' stroke-width='.9'/></svg>") center / 76% no-repeat;
   --icon-trash-full:
@@ -227,7 +234,6 @@
     --dock-pad: 14px;
     --dock-bottom: 8px;
     --dock-magnify: 1;
-    --radius-dock: 38px;
     --content-pad: 18px 16px;
     --radius-window: 0px;
     --titlebar-h: 48px;

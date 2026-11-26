@@ -1,8 +1,11 @@
+// Context menus: right-click, Control-click, the context menu key and long-press.
+// The items come from whoever owns the target: a file's app, a Dock app, or Finder.
+
 import { $ } from './dom.js';
 import { play } from './motion.js';
-import * as windows from './windows.js';
-import { trashIsEmpty } from './apps.js';
-import { closeMenus, enabledItems, moveMenuFocus, sync } from './menubar.js';
+import { apps } from './application.js';
+import { closeMenus } from './menubar.js';
+import { renderItems, enabledItems, moveMenuFocus } from './menu.js';
 
 const menu = $('#context-menu');
 const edge = 6;
@@ -11,70 +14,26 @@ const longPressMs = 500;
 const longPressSlop = 10;
 let suppressClick = false;
 
-const separator = '-';
-
-function fileItems(launcher) {
-  const app = launcher.dataset.launch;
-  return [
-    { label: 'Open', open: app },
-    separator,
-    { label: 'Copy Link', action: 'copy-link', arg: app },
-  ];
-}
-
-function dockItems(app) {
-  if (app === 'trash') {
-    return [
-      { label: 'Open', open: 'trash' },
-      separator,
-      { label: 'Empty Trash', action: 'empty-trash', disabled: trashIsEmpty() },
-    ];
-  }
-  const open = windows.appWindows(app);
-  if (!open.length) return [{ label: 'Open', open: app }];
-  return [
-    ...open.map(({ id, title }) => ({ label: title, open: id, role: 'menuitemradio', windowItem: id })),
-    separator,
-    { label: 'Show All Windows', action: 'show-all', needs: 'minimized' },
-    { label: 'Hide', action: 'hide-app', arg: app },
-    { label: 'Quit', action: 'quit-app', arg: app },
-  ];
-}
-
-const desktopItems = () => [
-  { label: 'About YaseenOS', open: 'sysinfo' },
-  separator,
-  { label: 'Show Desktop Icons', action: 'toggle-icons', role: 'menuitemcheckbox' },
-  { label: 'Enter Full Screen', action: 'fullscreen', needs: 'fullscreen', fullscreenLabel: '' },
-  separator,
-  { label: 'New Message', open: 'compose' },
-];
-
 function itemsFor(target) {
-  const launcher = target.closest('[data-launch]');
-  if (launcher) return { items: fileItems(launcher), anchor: launcher };
-  const homeApp = target.closest('.home-app');
-  if (homeApp) return { items: dockItems(homeApp.dataset.open), anchor: homeApp };
-  const dockItem = target.closest('.dock-item');
-  if (dockItem) return { items: dockItems(dockItem.dataset.app), anchor: dockItem, above: true };
-  if (target.closest('#desktop') && !target.closest('.window')) return { items: desktopItems() };
-  return null;
-}
+  const finder = apps.get('finder');
+  const file = target.closest('[data-launch]');
+  if (file) return { items: finder.fileMenu(file), anchor: file };
 
-function render(items) {
-  return items.map(item => {
-    if (item === separator) return document.createElement('hr');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.setAttribute('role', item.role ?? 'menuitem');
-    if (item.role) button.setAttribute('aria-checked', 'false');
-    button.textContent = item.label;
-    button.disabled = !!item.disabled;
-    ['open', 'action', 'arg', 'needs', 'windowItem', 'fullscreenLabel']
-      .filter(key => key in item)
-      .forEach(key => { button.dataset[key] = item[key]; });
-    return button;
-  });
+  const homeApp = target.closest('.home-app');
+  if (homeApp) {
+    const items = apps.get(homeApp.dataset.app)?.dockItems() ?? [];
+    return items.length ? { items, anchor: homeApp } : null;
+  }
+
+  const dockItem = target.closest('.dock-item');
+  if (dockItem) {
+    if (dockItem.dataset.app === 'trash') return { items: finder.trashMenu(), anchor: dockItem, above: true };
+    const app = apps.get(dockItem.dataset.app);
+    return app ? { items: app.dockMenu(), anchor: dockItem, above: true } : null;
+  }
+
+  if (target.closest('#desktop') && !target.closest('.window, .home-screen')) return { items: finder.desktopMenu() };
+  return null;
 }
 
 function place({ x, y, anchor, above }) {
@@ -110,8 +69,7 @@ function open(target, x, y, focusFirst) {
   closeMenus();
   menu.getAnimations().forEach(a => a.cancel());
   menu.classList.remove('is-closing');
-  menu.replaceChildren(...render(found.items));
-  sync();
+  menu.replaceChildren(...renderItems(found.items, closeContextMenu));
   menu.hidden = false;
   place({ x, y, anchor: found.anchor, above: found.above });
   play(menu, 'is-opening');
@@ -170,7 +128,6 @@ export function initContextMenu() {
   menu.tabIndex = -1;
   document.addEventListener('contextmenu', onContextMenu);
   menu.addEventListener('keydown', onMenuKeydown);
-  menu.addEventListener('click', e => { if (e.target.closest('[role^="menuitem"]')) closeContextMenu(); });
   document.addEventListener('pointerdown', e => { if (!menu.contains(e.target)) closeContextMenu(); });
   window.addEventListener('blur', closeContextMenu);
   window.addEventListener('resize', closeContextMenu);

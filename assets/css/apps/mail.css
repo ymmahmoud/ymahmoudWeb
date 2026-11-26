@@ -12,12 +12,24 @@
   cursor: default;
 }
 .mail-list span { font-size: var(--text-sm); }
+.mail-list button.unread strong::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 6px 1px -2px;
+  border-radius: 50%;
+  background: var(--unread);
+}
+.mail-list button[aria-current="true"].unread strong::before { background: currentColor; }
 .mail-list small { font-size: var(--text-xs); color: var(--text-muted); }
 .mail-list button[aria-current="true"] { background: var(--accent); color: var(--text-on-accent); }
 .mail-list button[aria-current="true"] small { color: inherit; opacity: .8; }
 .mail-empty { padding: 40px 12px; text-align: center; color: var(--text-muted); }
 
 .mail-reader { padding: 6px 18px 20px; overflow: auto; }
+.mail-reader:not(:has(.message:not([hidden]))) { display: grid; place-items: center; color: var(--text-muted); }
+.mail-reader:not(:has(.message:not([hidden])))::before { content: "No Message Selected"; font-size: var(--text-lg); }
 .message header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: .5px solid var(--hairline); }
 .message-from { margin: 0; font-weight: 700; }
 .message-meta { margin: 0; font-size: var(--text-xs); color: var(--text-muted); }

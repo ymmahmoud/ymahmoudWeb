@@ -3,7 +3,7 @@ import { play } from './motion.js';
 
 const root = document.documentElement;
 
-const store = {
+export const store = {
   get(key) {
     try { return localStorage.getItem('yos.' + key); } catch { return null; }
   },
@@ -17,9 +17,15 @@ export const state = {
   wifi: true,
   network: 'Home',
   lowPower: false,
-  icons: true,
+  wallpaper: null,
   battery: null,
 };
+
+// The choices come from System Settings › Wallpaper (listed once, in index.php).
+const wallpaperSource = name => document.querySelector(`[data-wallpaper="${name}"] img`)?.getAttribute('src');
+
+const prefersDark = matchMedia('(prefers-color-scheme: dark)');
+export const isDark = () => state.appearance === 'dark' || (state.appearance === 'auto' && prefersDark.matches);
 
 const emit = () => document.dispatchEvent(new CustomEvent('os:system'));
 
@@ -63,19 +69,13 @@ export function setBrightness(percent) {
   $('#dimmer').style.opacity = String(((100 - percent) / 100) * 0.8);
 }
 
-export function setIcons(on) {
-  state.icons = on;
-  $('#desk-icons').hidden = !on;
+export function setWallpaper(name) {
+  const src = wallpaperSource(name);
+  if (!src) return;
+  state.wallpaper = name;
+  root.style.setProperty('--wallpaper-image', `url("${new URL(src, document.baseURI).href}")`);
+  store.set('wallpaper', name);
   emit();
-}
-
-export const canFullscreen = () => !!document.fullscreenEnabled;
-export const isFullscreen = () => !!document.fullscreenElement;
-
-export function toggleFullscreen() {
-  if (!canFullscreen()) return;
-  const request = isFullscreen() ? document.exitFullscreen() : root.requestFullscreen();
-  request?.catch?.(() => notify('Full Screen', 'Your browser didn’t allow full screen.'));
 }
 
 export function sleep() {
@@ -185,13 +185,14 @@ async function initBattery() {
 export function initSystem() {
   const saved = store.get('appearance');
   if (saved) setAppearance(saved);
+  state.wallpaper = wallpaperSource(store.get('wallpaper')) ? store.get('wallpaper') : document.querySelector('[data-wallpaper]')?.dataset.wallpaper;
+  prefersDark.addEventListener?.('change', emit);
 
   applyAccessibility();
   prefersLessGlass.addEventListener?.('change', applyAccessibility);
   prefersLessMotion.addEventListener?.('change', applyAccessibility);
 
   $('#brightness').addEventListener('input', e => setBrightness(+e.target.value));
-  document.addEventListener('fullscreenchange', emit);
 
   tick();
   setInterval(tick, 10000);

@@ -1,35 +1,71 @@
-.contact-card { padding: 28px 24px 24px; text-align: center; }
-.contact-name { margin: 0; font: 600 var(--text-xl) var(--font-display); }
+/* Phone: Recents in the sidebar, the selected contact's card beside it. */
+.phone-app { grid-template-columns: 280px 1fr; min-height: 440px; }
+
+.phone-list .call-row { justify-content: flex-start; gap: 10px; padding: 6px 8px; }
+.phone-list .call-row[aria-current="true"] { font-weight: inherit; }
+.call-text { display: grid; flex: 1; min-width: 0; }
+.call-text strong, .call-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.call-text strong { font-weight: 600; }
+.call-text span { font-size: var(--text-xs); color: var(--text-muted); }
+.call-row small { flex: none; align-self: flex-start; margin-top: 2px; font-size: var(--text-xs); color: var(--text-muted); }
+
+.phone-detail { overflow: auto; }
+.phone-back { display: none; }
+
+.contact-card { max-width: 440px; margin: 0 auto; padding: 28px 24px 24px; text-align: center; }
+.contact-card .avatar { width: 96px; height: 96px; font-size: 38px; }
+.contact-name { margin: 0; font: 700 var(--text-2xl) var(--font-display); }
 .contact-sub { margin: 2px 0 20px; color: var(--text-muted); }
 
-.contact-actions { display: flex; justify-content: center; gap: 12px; margin-bottom: 22px; }
+/* Action buttons: rounded tiles with an accent glyph and a small label. */
+.contact-actions { display: flex; justify-content: center; gap: 10px; margin-bottom: 22px; }
 .contact-actions a, .contact-actions button {
   display: grid;
   justify-items: center;
   gap: 5px;
-  width: 64px;
-  padding: 0;
+  width: 72px;
+  padding: 10px 0 8px;
   border: 0;
-  background: none;
+  border-radius: var(--radius-item);
+  background: var(--fill-quiet);
   font-size: var(--text-xs);
   color: var(--accent);
   text-decoration: none;
-  cursor: pointer;
+  cursor: default;
 }
-.contact-round {
-  --glass-fill: var(--glass-fill-inset);
-  --glass-shadow: 0 2px 6px var(--shadow-color);
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-}
-.contact-round svg { width: 19px; height: 19px; fill: var(--accent); }
+.contact-actions a:hover, .contact-actions button:hover { background: var(--fill-hover); }
+.contact-round { display: grid; place-items: center; width: 22px; height: 22px; }
+.contact-round svg { width: 20px; height: 20px; fill: var(--accent); }
 
-.contact-fields { margin: 0; text-align: left; border-radius: var(--radius-card); background: var(--fill-quiet); }
-.contact-fields div { padding: 8px 14px; border-bottom: .5px solid var(--hairline); }
-.contact-fields div:last-child { border-bottom: 0; }
+.contact-fields { margin: 0 0 16px; padding: 0; list-style: none; text-align: left; border-radius: var(--radius-card); background: var(--fill-quiet); }
+.contact-fields > * { padding: 9px 14px; border-bottom: .5px solid var(--hairline); }
+.contact-fields > :last-child { border-bottom: 0; }
 .contact-fields dt { font-size: var(--text-xs); color: var(--text-muted); }
 .contact-fields dd { margin: 0; }
 .contact-fields a { text-decoration: none; }
+
+.call-history p { margin: 0; }
+.call-when { font-size: var(--text-xs); font-weight: 600; color: var(--text-muted); }
+.call-history .call-details { margin-top: 2px; font-size: var(--text-sm); color: var(--text-muted); }
+
+/* iPhone: Recents fills the screen and a contact pushes over it, with a back button. */
+@media (max-width: 700px) {
+  .phone-app { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+  .phone-app .phone-list { flex-direction: column; gap: 0; padding: 0 16px; overflow: auto; }
+  .phone-app .phone-list .sidebar-heading { display: block; margin: 16px 0 6px; font-size: var(--text-xl); color: inherit; }
+  .phone-app .phone-list .call-row,
+  .phone-app .phone-list .call-row[aria-current="true"] {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 0;
+    border-bottom: .5px solid var(--hairline);
+    background: none;
+    color: inherit;
+    font-size: var(--text-md);
+  }
+  .phone-app .phone-list small { display: block; }
+  .phone-app[data-view="list"] .phone-detail,
+  .phone-app[data-view="detail"] .phone-list { display: none; }
+  .phone-back { display: block; margin: 8px 8px 0; padding: 6px 8px; border: 0; background: none; color: var(--accent); font-size: var(--text-md); }
+  .phone-back span { font-size: 1.4em; line-height: 0; vertical-align: -2px; }
+}

@@ -2,7 +2,7 @@
   position: fixed;
   top: calc(var(--menubar-h) + 8px);
   right: 10px;
-  z-index: 9998;
+  z-index: 10002;
   display: grid;
   gap: 8px;
   width: min(340px, calc(100vw - 20px));
